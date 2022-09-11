@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import About from "./pages/About"; //About是路由组件
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import store, { persistor } from './store/index'
+ 
+export default class App extends Component {
+    render() {
+        console.log('store', store)
+        return (
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <About></About>
+                </PersistGate>
+            </Provider>
+        );
+    }
 }
-
-export default App;
